@@ -1,13 +1,12 @@
-import Notiflix from "notiflix";
+import Notiflix from 'notiflix';
 
-const form = document.querySelector("form");
+const form = document.querySelector('form');
 const delayInp = document.querySelector('input[name="delay"]');
 const stepInp = document.querySelector('input[name="step"]');
 const amountInp = document.querySelector('input[name="amount"]');
 
-form.addEventListener("submit", onSubmit);
+form.addEventListener('submit', onSubmit);
 
-// створюємо проміс
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -22,15 +21,12 @@ function createPromise(position, delay) {
 }
 
 function onSubmit(event) {
-  // скасовуємо дефолтну поведінку форми
   event.preventDefault();
 
-  // отримуємо значення інпутів і приводимо їх до числа
   let delayValue = Number(delayInp.value);
   const stepValue = Number(stepInp.value);
   const amountValue = Number(amountInp.value);
 
-  // створюємо проміси згідно кількості amount
   for (let i = 1; i <= amountValue; i += 1) {
     createPromise(i, delayValue)
       .then(({ position, delay }) => {
